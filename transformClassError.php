@@ -231,114 +231,14 @@
 		$I=new Integral($f,$a,$b,$metoda);
 		$I->upisivanje();
 		$I->poruka();
-		/*$f=str_replace("dx","",$f);
 		
 		
-		$f1=str_replace("x",$a,$f);
-		$f2=str_replace("x",$b,$f);
-		$f1=str_replace("e".$a."p","exp",$f1);
-		$f2=str_replace("e".$b."p","exp",$f2);
-		$f1 = preg_replace('!pi|π!', 'pi()', $f1); // Zamjena pi sa pi function
-		$f2 = preg_replace('!pi|π!', 'pi()', $f2); // Zamjena pi sa pi function
-		$f=str_replace("x","(x)",$f);
-		$f=str_replace("((x))","(x)",$f);
-		$f=str_replace("e(x)p","exp",$f);
-		for ($i=0;$i<10;$i++){
-			$f=str_replace($i."(x)",$i."*(x)",$f);
-			$f=str_replace($i."a",$i."*a",$f);
-			$f=str_replace($i."c",$i."*c",$f);
-			$f=str_replace($i."l",$i."*l",$f);
-			$f=str_replace($i."s",$i."*s",$f);	
-			$f=str_replace($i."e",$i."*e",$f);	
-			$f=str_replace($i."p",$i."*p",$f);
+		
+		
+		
 		
 		}
-		echo $f."<br>";
-		if($a!=-1 || $b!=1){
-			$c=($b-$a)/2;
-			$d="(".$c."+".$c."*z)";
-			$f=str_replace("(x)",$d,$f);
-		}	
-		$f1 = preg_replace('/\s+/', '', $f1);
-		$f2=preg_replace('/\s+/', '', $f2);
-		//$f=str_replace("(x)",$d,$f);
-		echo $f."<br>";
 		
-		$ukupno=0;
-		$niz=array();
-		$korak=($b-$a)/10;
-		$number = '(?:\d+(?:[,.]\d+)?|pi|π)'; // Sta je broj
-		$functions = '(?:sin?|cos?|tan?|abs?|acos?|asin?|atan?|exp?|log10?|deg?|rad?|sqrt?|ceil?|floor?|round?|log|pow)?'; // Dozvoljene PHP functions
-		$operators = '[+\/*\^%-]'; //operatori
-		$regexp = '(('.$number.'|'.$functions.'\s*\((?1)+'.$number.'\)|\((?1)+\))(?:'.$operators.'('.$number.')?)+'; // Radni regexp, koriscenje ostalih paterna 
-		$regexp1 = '/^(('.$number.'|'.$functions.'\s*\('.$regexp.')+\)|\((?1)+\))(?:'.$operators.'(?2))?)+|'.$regexp.')?$/'; // Konacan regexp
-			
-		echo $f1."<br>";
-		echo $f2."<br>";
-		if (preg_match($regexp1,$f1) && preg_match($regexp1,$f2))
-		{
-			$f1 = preg_replace('!pi|π!', 'pi()', $f1); // Zamjena pi sa pi function
-			
-			if( is_null(eval('$result1 = '.$f2.';')) && is_null(eval('$result = '.$f1.';'))){
-				
-			
-				echo $result1 ." ".$result."<br>";
-            			
-				if(is_nan($result) || is_nan($result1) || !is_finite($result) || !is_finite($result1)){	
-					echo $_SESSION['rezultat']="FUNKCIJA NIJE DEFINISANA NA INTERVALU ILI JE POGRESNO UNESENA!";
-					header("location:index.php");	
-				}else{
-					for($i=$a;$i<=$b;$i+=$korak){
-						$f1=str_replace("z",$i,$f);
-					
-						echo $f1."<br>";
-						$f1 = preg_replace('/\s+/', '', $f1);
-
-					/*$number = '(?:\d+(?:[,.]\d+)?|pi|π)'; // Sta je broj
-					$functions = '(?:sin?|cos?|tan?|abs?|acos?|asin?|atan?|exp?|log10?|deg?|rad?|sqrt?|ceil?|floor?|round?|log)'; // Dozvoljene PHP functions
-					$operators = '[+\/*\^%-]'; //operatori
-					$regexp = '(('.$number.'|'.$functions.'\s*\((?1)+'.$number.'\)|\((?1)+\))(?:'.$operators.'('.$number.')?)+'; // Radni regexp, koriscenje ostalih paterna 
-					$regexp1 = '/^(('.$number.'|'.$functions.'\s*\('.$regexp.')+\)|\((?1)+\))(?:'.$operators.'(?2))?)+$/'; // Konacan regexp*/
-					//eval('$result = '.$f1.';');	
-					/*if (preg_match($regexp1,$f1))
-					{
-						$f1 = preg_replace('!pi|π!', 'pi()', $f1); // Zamjena pi sa pi function
-						eval('$result = '.$f1.';');
-					}
-					else
-					{
-						$result = false;
-					}
-							
-					
-					
-						$niz[]=$result;
-						$ukupno+=$result;
-						echo $result."<br>";
-					
-					}
-					$f1=str_replace("z","-sqrt(3/5)",$f);
-					$f1=str_replace("z","0",$f);
-					$f3=str_replace("z","sqrt(3/5)",$f);
-					eval('$prvi ='.$f1.';');
-					eval('$drugi ='.$f2.';');
-					eval('$treci ='.$f3.';');
-					$pov=(($b-$a)/2)*(5/9*$prvi+8/9*$drugi+5/9*$treci);
-					echo $pov.'<br>';
-				
-					echo $_SESSION['rezultat']=$pov;
-					header("location:index.php");
-			
-				}
-			}else{
-				echo $f1."<br>";
-				echo $_SESSION['rezultat']="FUNKCIJA  JE POGRESNO UNESENA!";
-				header("location:index.php");	
-			}
-			*/
-		}
-		//echo '<div id="rez"></div>';	
-	  
 	  
 ?>
 <!--
