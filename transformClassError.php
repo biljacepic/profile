@@ -55,7 +55,7 @@
 			
 			public function povratak($pov){
 				$_SESSION['rezultat']=$pov;
-				header("location:index.php");
+				header("location:index1.php");
 			}
 			public function izvodjenje($f,$a,$b,$metoda){
 				
@@ -237,7 +237,8 @@
 		
 		
 		
-		}
+	  }
+
 		
 	  
 ?>
