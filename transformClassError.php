@@ -80,7 +80,7 @@
 						$d="(".$c."+".$c."*z)";
 						$f=str_replace("(x)",$d,$f);
 					}else{
-					$f=str_replace("(x)","(z)",$f);
+						$f=str_replace("(x)","(z)",$f);
 					}
 				}else{
 					$f=str_replace("(x)","(z)",$f);
@@ -227,11 +227,12 @@
 		if ($f=="dx"){
 				 $_SESSION['rezultat']=$b-$a;
 				header("location:index1.php");
+		}else{
+			$I=new Integral($f,$a,$b,$metoda);
+			$I->upisivanje();
+			$I->poruka();
 		}
-		$I=new Integral($f,$a,$b,$metoda);
-		$I->upisivanje();
-		$I->poruka();
-		
+
 		
 		
 		
