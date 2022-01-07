@@ -1,6 +1,6 @@
 # profile
 U file XiOsamprotiv sam prikazala koliko je 
-jednostavna igrica XiO protiv komputera u kojoj nije uvek kompjuter pobednik, uz malo poynavanjew CSS i JQuery
+jednostavna igrica XiO protiv komputera u file XiOProtiv1 nije uvek kompjuter pobednik, uz malo poynavanjew CSS i JQuery
 
 u anketa1.vue je kod u Vue mog projekta za prikazivanje , anketiranje i prikazivanje ankete u projektu ciji link sam vam poslala u CV.
 
