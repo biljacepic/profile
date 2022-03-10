@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+		<style>
+		
+			td
+			{
+				width:100px;
+				height:100px;
+				text-align:center;
+			}
+			img
+			{
+				width:100%;
+			}
+			
+		
+		</style>
+	</head>
+	<body>
+		
+		<br>
+		<br>
+		<p>Igra se se igra na sledeći način:<br> za X kliknite jednom na prazno polje,<br>za O kliknite dva puta na prazno polje</p>
+		<p>Klikni dugme koje ce prvo da igra</p>
+		<button id="PrvoX">PrvoX</button><br><br>
+		<button id="PrvoO">PrvoO</button>
+		<br>
+		<br>
+		<table border="1px" id="tabela">
+		
+			<tr id="tr1">
+				<td> </td>
+				<td> </td>
+				<td> </td>
+			</tr>
+			<tr id="tr2">
+				<td> </td>
+				<td> </td>
+				<td> </td>
+			</tr>
+			<tr id="tr3">
+				<td> </td>
+				<td> </td>
+				<td> </td>
+			</tr>
+			
+		</table>
+		<button id="resetuj">Ponovo</button>
+	</body>
+	
+	
+	
+	<script>
+		var red=0;
+		function provera(par){
+			var pobeda1=true;
+			var pobeda2=true;
+			var pobeda3=true;
+			
+			$("#tr1 td").each(function(i, element){
+			
+				if($(element).text()!=par)pobeda1=false;
+			});	
+			
+			$("#tr2 td").each(function(i, element){
+			
+				if($(element).text()!=par)pobeda2=false;
+			});	
+			
+			$("#tr3 td").each(function(i, element){
+			
+				if($(element).text()!=par)pobeda3=false;
+				
+			});
+			if(pobeda1 || pobeda2 || pobeda3)return true;
+			if($("#tr1 td:first").text()==par && $("#tr2 td:first").text()==par && $("#tr3 td:first").text()==par){return true;}
+			if($("#tr1 td:odd").text()==par && $("#tr2 td:odd").text()==par && $("#tr3 td:odd").text()==par){return true;}
+			if($("#tr1 td:last").text()==par && $("#tr2 td:last").text()==par && $("#tr3 td:last").text()==par){return true;}
+			if($("#tr1 td:first").text()==par && $("#tr2 td:odd").text()==par && $("#tr3 td:last").text()==par){return true;}
+			if($("#tr1 td:last").text()==par && $("#tr2 td:odd").text()==par && $("#tr3 td:first").text()==par){return true;}
+			return false;
+		}
+		$("#resetuj").click(function()
+		{
+			$("#tabela td").each(function(i,element){
+				$(element).text(" ");
+				
+			});	
+			alert('Ponovo izaberite ko ce prvi da igra!');
+		});
+		$("#PrvoX").click(function()
+		{
+			red=1;
+		});
+		$("#PrvoO").click(function()
+		{
+			red=2;
+		});
+		$("td").click(function()
+			{
+			if($(this).text()==" "&& red==1){
+				$(this).text("X");
+				red=2;
+				
+				if(provera("X")) {
+					
+					alert('Pobeda X-ova!!!');
+					$(this).text("X");
+					red=0;
+					//reset();
+				}
+				
+			}	
+			});
+		$("td").dblclick(function(){
+				if($(this).text()==" " && red==2){
+					$(this).text("O");
+					red=1;
+				
+					if(provera("O")){
+						
+						alert('Pobeda O-va!!!');
+						$(this).text("O");
+						red=0;
+						//reset();
+					}
+				}	
+								
+			});
+		
+		
+		
+		</script>
+	</html>	
+		
