@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+		<style>
+		table,th,td{
+			border:1px solid black;
+			
+		}
+		
+		#resenje{
+			height:20px;
+			text-align:right;
+			background-color:white;
+		}
+		button{
+			display:block;
+			width:100%;
+			}
+		.jednako
+			{
+				height: 80px;
+			}
+		.drugi
+		{
+			text-align:center;
+			height:100%;
+			width:210px; 
+			margin-top:20%; 
+			background-color:rgba(26,93,104,1.00);
+		}
+		</style>
+		
+		
+		</head>
+		
+	<body>
+		<div class="container" style="text-align:center">
+		<div class="container drugi">
+			<table>
+				<thead>
+					<tr>
+						<th colspan="4"><div id="resenje" >0</div></th>
+			
+					</tr>
+				</thead>
+				<tr>
+					<td><button  class= "btn btn-info" onclick="broj(1)">1</button></td>
+					<td><button class= "btn btn-info"  onclick="broj(2)">2</button></td>
+					<td><button class= "btn btn-info"  onclick="broj(3)">3</button></td>
+					<td><button class= "btn btn-primary" onclick="opperacija('+')">+</button></td>
+				</tr>	
+				<tr>
+					<td><button class= "btn btn-info"  onclick="broj(4)">4</button></td>
+					<td><button class= "btn btn-info"  onclick="broj(5)">5</button></td>
+					<td><button class= "btn btn-info"  onclick="broj(6)">6</button></td>
+					<td><button class= "btn btn-primary"  onclick="opperacija('-')">-</button></td>
+				</tr>	
+				<tr>
+					<td><button class= "btn btn-info"  onclick="broj(7)">7</button></td>
+					<td><button class= "btn btn-info"   onclick="broj(8)">8</button></td>
+					<td><button class= "btn btn-info" onclick="broj(9)">9</button></td>
+					<td><button class= "btn btn-primary" onclick="opperacija('*')">*</button></td>
+				</tr>
+				<tr>
+					<td><button class= "btn btn-warning" onclick="unazad()">&lt;</button></td>
+					<td><button class= "btn btn-info" onclick="broj(0)">0</button></td>
+					<td><button class= "btn btn-primary" onclick="znak()">±</button></td>
+					<td><button class= "btn btn-primary" onclick="opperacija('/')">/</button></td>
+				</tr>
+				<tr>
+					<td><button class= "btn btn-warning" onclick="brisibroj()">C</button></td>
+					<td><button class= "btn btn-danger" onclick="resetuj()">CE</button></td>
+					<td><button class= "btn btn-info" onclick="tackaa()">.</button></td>
+					<td rowspan="2"><button class= "btn btn-success jednako"  onclick="jednako()">=</button></td>
+				</tr>
+				<tr>
+					<td><button class= "btn btn-primary" onclick="opperacija('x^y')">x^y</button></td>
+					<td><button class= "btn btn-primary" onclick="opperacija('√')">√</button></td>
+					<td><button class= "btn btn-info" onclick="piii()">π</button></td>
+				</tr>
+		
+		</table>
+		</div>
+		</div>
+		<script type="text/javascript">
+			var brojac=0;
+			
+			function broj(a){
+				
+				if (brojac>14){
+					alert("uneli ste previse brojeva");
+					brojac-=1;
+					var str=document.getElementById("resenje").innerHTML;
+					document.getElementById("resenje").innerHTML=str.slice(0,str.length-1);
+					
+				}else if(brojac<14){
+				
+
+						if(a!='0'&& document.getElementById("resenje").innerHTML!='0' && brojac!=0 ){
+						document.getElementById("resenje").innerHTML+=a;
+						brojac=brojac+1;
+						
+						}else if(document.getElementById("resenje").innerHTML=='0' || brojac==0){
+							document.getElementById("resenje").innerHTML=a;
+						
+							if(a!=0)brojac=1;
+						}else if( document.getElementById("resenje").innerHTML=='-' && a=='0')
+						{document.getElementById("resenje").innerHTML='-';
+						brojac=1;
+						} else{
+						document.getElementById("resenje").innerHTML+=a;
+						brojac=brojac+1;
+						}
+					}
+				}
+				
+			
+			
+			var rezultat=0;
+			var brojevi=[];
+			var op=[]
+			var tacka=false;
+			var pi= false;
+			
+			function piii()
+			{
+				document.getElementById("resenje").innerHTML=3.14;
+				pi=true;
+				
+				brojac = 3;
+			}
+			
+			function tackaa()
+			{
+				if(!tacka)
+					{
+				if(document.getElementById("resenje").innerHTML=='-')
+					{
+						document.getElementById("resenje").innerHTML='-0.';
+						tacka=true;
+						brojac++;
+					}
+				else
+					{
+						document.getElementById("resenje").innerHTML+='.';
+						tacka=true;
+						brojac++;
+					}
+					}
+			}
+			
+			function opperacija(b){
+				var br=document.getElementById("resenje").innerHTML;
+				
+				brojevi.push(br);
+				op.push(b);
+				
+				brojac=0;
+				if (brojevi.length==2)
+				{
+					switch(op[0]){
+						case '+':rezultat=brojevi[0]*1+brojevi[1]*1;
+						break;
+						case '-':rezultat=brojevi[0]-brojevi[1];
+						break;
+						case '*':rezultat=brojevi[0]*brojevi[1];
+						break;
+						case '/':
+						if(brojevi[1]!=0){
+						rezultat=brojevi[0]/brojevi[1];
+						}else {
+						rezultat=0;
+						alert("Ne moze se deliti nulom");}
+						break;
+						case 'x^y': rezultat=Math.pow(brojevi[0],brojevi[1]);
+						break;
+						case '√': rezultat=Math.pow(brojevi[0],1/brojevi[1]);
+						break;
+						
+					}
+					
+					if((''+rezultat.toFixed(12)).length<=14)
+						{
+						brojevi.pop();
+						brojevi[0]=rezultat;
+						op[0]=op.pop();
+						document.getElementById("resenje").innerHTML=rezultat;
+							
+						}
+					else
+					{
+						//alert('Rezultat je duzi od 14 karaktera');
+						brojevi.pop();
+						brojevi[0]=rezultat;
+						op[0]=op.pop();
+						
+						
+						document.getElementById("resenje").innerHTML=rezultat;
+						
+						
+						
+					}
+					
+				
+					
+				}
+				tacka=false;
+			}
+			function unazad(){
+			 if(brojac>0){
+				brojac-=1;
+				var str=document.getElementById("resenje").innerHTML;
+				if(str.slice(str.length-1,str.length)=='.')
+					  {
+						  	tacka=false;
+					  }document.getElementById("resenje").innerHTML=str.slice(0,str.length-1);
+				}else{document.getElementById("resenje").innerHTML='0';
+					  
+				  
+			}
+				
+			}
+			function brisibroj(){
+			brojac=0;
+			document.getElementById("resenje").innerHTML='0';
+			tacka=false;
+			}
+			function jednako(){
+				if (op.length>0)opperacija(op[0]);
+				while (op.length>0){
+					op.pop();}
+					brojac=0;
+				while( brojevi.length>0)brojevi.pop();
+			}
+			function znak(){
+				if (brojac==0||document.getElementById("resenje").innerHTML=='0'){
+				document.getElementById("resenje").innerHTML='-'
+					brojac=1;
+				}
+				else if(document.getElementById("resenje").innerHTML=='-')
+						{
+							document.getElementById("resenje").innerHTML=0;
+						}
+				else
+				{
+						document.getElementById("resenje").innerHTML*=-1;
+				}
+			 }
+			 function resetuj(){
+				document.getElementById("resenje").innerHTML='0';
+				while (op.length>0){
+					op.pop();}
+				brojac=0;
+				while( brojevi.length>0){brojevi.pop();}
+				 tacka=false;
+				
+			 }
+			
+		</script>
+		
+	</body>
+
+</html>
+				
